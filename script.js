@@ -15,3 +15,17 @@ function getMinMatrixItem(matrix) {
 
     return min;
 }
+
+function getMaxMatrixItem(matrix) {
+    const rows = matrix.length;
+    const cols = matrix[0].length;
+    let max = -Infinity;
+
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (matrix[i][j] > max) max = matrix[i][j];
+        }
+    }
+
+    return max;
+}
