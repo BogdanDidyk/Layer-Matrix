@@ -39,3 +39,25 @@ function getRangeOfNumbers(start = 0, end = 9, step = 1) {
 
     return numbers;
 }
+
+function getLayerMatrix(matrix, layersNumber) {
+    const min = getMinMatrixItem(matrix);
+    const max = getMaxMatrixItem(matrix);
+    const h = (max - min) / layersNumber;
+    const edgeLayerPoints = getRangeOfNumbers(min, max, h);
+
+    const layerMatrix = [];
+    const rows = matrix.length;
+    const cols = matrix[0].length;
+
+    for (let i = 0; i < rows; i++) {
+        layerMatrix[i] = [];
+        for (let j = 0; j < cols; j++) {
+            let k = 0;
+            while (k < layersNumber + 1 && (matrix[i][j] < edgeLayerPoints[k] || matrix[i][j] > edgeLayerPoints[k + 1])) k++;
+            layerMatrix[i][j] = k;
+        }
+    }
+
+    return layerMatrix;
+}
