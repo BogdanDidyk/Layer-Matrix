@@ -29,3 +29,13 @@ function getMaxMatrixItem(matrix) {
 
     return max;
 }
+
+function getRangeOfNumbers(start = 0, end = 9, step = 1) {
+    const numbers = [];
+
+    for (start; start <= end; start = +(start + step).toFixed(2)) {
+        numbers.push(start);
+    }
+
+    return numbers;
+}
