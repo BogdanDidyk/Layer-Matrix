@@ -61,3 +61,22 @@ function getLayerMatrix(matrix, layersNumber) {
 
     return layerMatrix;
 }
+
+const matrix1 = [
+    [0.5, 0.6, 0.2],
+    [0.2, 0.8, 0.8]
+];
+
+const matrix2 = [
+    [1, 3, 3, 1, 2, 6],
+    [2, 7, 1, 2, 1, 3],
+    [9, 9, 7, 8, 8, 2],
+    [3, 7, 2, 3, 1, 1],
+    [1, 9, 4, 4, 5, 3],
+    [2, 7, 1, 6, 4, 2],
+    [1, 8, 2, 3, 1, 2],
+];
+
+printMatrix(getLayerMatrix(matrix1, 2));
+console.log("");
+printMatrix(getLayerMatrix(matrix2, 3));
