@@ -6,32 +6,20 @@ function printMatrix(matrix, itemSeparator = " ") {
     matrix.forEach(row => console.log(getJoinedArrayStr(row, itemSeparator)));
 }
 
-function getMinMatrixItem(matrix) {
-    const rows = matrix.length;
-    const cols = matrix[0].length;
-    let min = Infinity;
-
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if (matrix[i][j] < min) min = matrix[i][j];
-        }
-    }
-
-    return min;
+function getArrayMin(arr) {
+    return Math.min(...arr);
 }
 
-function getMaxMatrixItem(matrix) {
-    const rows = matrix.length;
-    const cols = matrix[0].length;
-    let max = -Infinity;
+function getArrayMax(arr) {
+    return Math.max(...arr);
+}
 
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if (matrix[i][j] > max) max = matrix[i][j];
-        }
-    }
+function getMatrixMin(matrix) {
+    return matrix.reduce((min, row) => Math.min(min, getArrayMin(row)), Infinity);
+}
 
-    return max;
+function getMatrixMax(matrix) {
+    return matrix.reduce((max, row) => Math.max(max, getArrayMax(row)), -Infinity);
 }
 
 function getRangeOfNumbers(start = 0, end = 9, step = 1) {
@@ -45,8 +33,8 @@ function getRangeOfNumbers(start = 0, end = 9, step = 1) {
 }
 
 function getLayerMatrix(matrix, layersNumber) {
-    const min = getMinMatrixItem(matrix);
-    const max = getMaxMatrixItem(matrix);
+    const min = getMatrixMin(matrix);
+    const max = getMatrixMax(matrix);
     const h = (max - min) / layersNumber;
     const edgeLayerPoints = getRangeOfNumbers(min, max, h);
 
