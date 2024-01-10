@@ -41,6 +41,12 @@ function generateColorGradients(n) {
     return colorGradients;
 }
 
+function printColoredArrayItems(arr, colors) {
+    const strPattern = "%c" + arr.join("%c");
+    const colorsPattern = colors.map(color => `color:${color};`)
+    console.log(strPattern, ...colorsPattern)
+}
+
 function getLayerMatrix(matrix, layersNumber) {
     const min = getMatrixMin(matrix);
     const max = getMatrixMax(matrix);
