@@ -27,6 +27,20 @@ function getRangeOfNumbers(start = 0, end = 9, step = 1) {
     return Array.from({length}, (_, index) => +(start + index * step).toFixed(2));
 }
 
+function generateColorGradients(n) {
+    const colorGradients = [];
+
+    for (let i = 0; i < n; i++) {
+        const red = Math.floor(255 * (1 - i / (n - 1)));
+        const green = Math.floor(255 * (i / (n - 1)));
+        const rgb = `rgb(${red}, ${green}, 0)`;
+
+        colorGradients.push(rgb);
+    }
+
+    return colorGradients;
+}
+
 function getLayerMatrix(matrix, layersNumber) {
     const min = getMatrixMin(matrix);
     const max = getMatrixMax(matrix);
