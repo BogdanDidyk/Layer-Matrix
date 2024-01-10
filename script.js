@@ -69,6 +69,20 @@ function getLayerMatrix(matrix, layersNumber) {
     return layerMatrix;
 }
 
+function vizualizeLayerMatrix(matrix, character = "*") {
+    const min = getMatrixMin(matrix);
+    const max = getMatrixMax(matrix);
+    const layersCount = max - min + 1;
+    const colors = generateColorGradients(layersCount);
+    const rows = matrix[0].length;
+    const rowStr = Array(rows).fill(character);
+    
+    matrix.forEach(row => {
+        const c = Array.from({length: row.length}, (_, index) => colors[row[index]]);
+        printColoredArrayItems(rowStr, c);
+    });
+}
+
 const matrix1 = [
     [0.5, 0.6, 0.2],
     [0.2, 0.8, 0.8]
