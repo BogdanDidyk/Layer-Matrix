@@ -83,6 +83,21 @@ function vizualizeLayerMatrix(matrix, character = "*") {
     });
 }
 
+function vizualizeCrossSectionSpatialFunction(rangeX, rangeY, func) {
+    const matrix = [];
+
+    for (let i = 0; i < rangeX.length; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < rangeY.length; j++) {
+            matrix[i][j] = func(rangeX[i], rangeY[j]);
+        }
+    }
+
+    const layerMatrix = getLayerMatrix(matrix, 50);
+
+    vizualizeLayerMatrix(layerMatrix, "██");
+}
+
 const matrix1 = [
     [0.5, 0.6, 0.2],
     [0.2, 0.8, 0.8]
