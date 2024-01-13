@@ -113,6 +113,14 @@ const matrix2 = [
     [1, 8, 2, 3, 1, 2],
 ];
 
-printMatrix(getLayerMatrix(matrix1, 2));
+printMatrix(getLayerMatrix(matrix1, 2), "  ");
 console.log("");
-printMatrix(getLayerMatrix(matrix2, 3));
+
+const layerMatrix = getLayerMatrix(matrix2, 3);
+printMatrix(layerMatrix, "  ");
+vizualizeLayerMatrix(layerMatrix, "██");
+
+const rangeX = getRangeOfNumbers(-5, 5, 1);
+const rangeY = getRangeOfNumbers(-5, 5, 1);
+const func = (x, y) => x + x * y;
+vizualizeCrossSectionSpatialFunction(rangeX, rangeY, func, "██");
