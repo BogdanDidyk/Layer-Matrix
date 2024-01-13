@@ -27,12 +27,12 @@ function getRangeOfNumbers(start = 0, end = 9, step = 1) {
     return Array.from({length}, (_, index) => +(start + index * step).toFixed(2));
 }
 
-function generateColorGradients(n) {
+function generateColorGradients(count) {
     const colorGradients = [];
 
-    for (let i = 0; i < n; i++) {
-        const red = Math.floor(255 * (1 - i / (n - 1)));
-        const green = Math.floor(255 * (i / (n - 1)));
+    for (let i = 0; i < count; i++) {
+        const red = Math.floor(255 * (1 - i / (count - 1)));
+        const green = Math.floor(255 * (i / (count - 1)));
         const rgb = `rgb(${red}, ${green}, 0)`;
 
         colorGradients.push(rgb);
@@ -47,10 +47,10 @@ function printColoredArrayItems(arr, colors) {
     console.log(strPattern, ...colorsPattern)
 }
 
-function getLayerMatrix(matrix, layersNumber) {
+function getLayerMatrix(matrix, layersCount) {
     const min = getMatrixMin(matrix);
     const max = getMatrixMax(matrix);
-    const h = (max - min) / layersNumber;
+    const h = (max - min) / layersCount;
     const edgeLayerPoints = getRangeOfNumbers(min, max, h);
 
     const layerMatrix = [];
@@ -61,7 +61,7 @@ function getLayerMatrix(matrix, layersNumber) {
         layerMatrix[i] = [];
         for (let j = 0; j < cols; j++) {
             let k = 0;
-            while (k < layersNumber + 1 && (matrix[i][j] < edgeLayerPoints[k] || matrix[i][j] > edgeLayerPoints[k + 1])) k++;
+            while (k < layersCount + 1 && (matrix[i][j] < edgeLayerPoints[k] || matrix[i][j] > edgeLayerPoints[k + 1])) k++;
             layerMatrix[i][j] = k;
         }
     }
@@ -69,13 +69,13 @@ function getLayerMatrix(matrix, layersNumber) {
     return layerMatrix;
 }
 
-function vizualizeLayerMatrix(matrix, character = "*") {
+function vizualizeLayerMatrix(matrix, symbols = "*") {
     const min = getMatrixMin(matrix);
     const max = getMatrixMax(matrix);
     const layersCount = max - min + 1;
     const colors = generateColorGradients(layersCount);
     const rows = matrix[0].length;
-    const rowStr = Array(rows).fill(character);
+    const rowStr = Array(rows).fill(symbols);
     
     matrix.forEach(row => {
         const c = Array.from({length: row.length}, (_, index) => colors[row[index]]);
@@ -83,7 +83,7 @@ function vizualizeLayerMatrix(matrix, character = "*") {
     });
 }
 
-function vizualizeCrossSectionSpatialFunction(rangeX, rangeY, func) {
+function vizualizeCrossSectionSpatialFunction(rangeX, rangeY, func, symbols) {
     const matrix = [];
 
     for (let i = 0; i < rangeX.length; i++) {
@@ -95,7 +95,7 @@ function vizualizeCrossSectionSpatialFunction(rangeX, rangeY, func) {
 
     const layerMatrix = getLayerMatrix(matrix, 50);
 
-    vizualizeLayerMatrix(layerMatrix, "██");
+    vizualizeLayerMatrix(layerMatrix, symbols);
 }
 
 const matrix1 = [
